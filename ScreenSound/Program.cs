@@ -2,36 +2,8 @@
 using ScreenSound.Menus;
 using ScreenSound.Modelos;
 
-try
-{
-    var artistaDAL = new ArtistaDAL();
-    //enviando por parametro para o adicionar
-    artistaDAL.Adicionar(new Artista("Turma do Pagode", "Banda de pagode dos anos 90."));
-
-    /* Atualiza e Deletar passando parametro */
-    //var artistaPitty = new Artista("Pitty", "Priscilla Novaes Leone, mais conhecida como Pitty, é uma cantora, compositora, produtora, escritora e multi-instrumentista brasileira.") { Id = 1 };
-    //artistaDAL.Atualizar(artistaPitty);
-    //artistaDAL.Deletar(artistaPitty);
-
-    //já busco o que eu adiconei.
-    var listaArtista = artistaDAL.Listar();
-
-    foreach ( var artista in listaArtista)
-    {
-        Console.WriteLine(artista);
-    }
-}
-catch (Exception ex)
-{
-    Console.WriteLine(ex.Message);
-}
-
-Artista ira = new Artista("Ira!", "Banda Ira!");
-Artista beatles = new("The Beatles", "Banda The Beatles");
-
-Dictionary<string, Artista> artistasRegistrados = new();
-artistasRegistrados.Add(ira.Nome, ira);
-artistasRegistrados.Add(beatles.Nome, beatles);
+var context = new ScreenSoundContext();
+var artistaORMEntity = new ArtistaORMEntityFramework(context); 
 
 Dictionary<int, Menu> opcoes = new();
 opcoes.Add(1, new MenuRegistrarArtista());
@@ -70,7 +42,7 @@ void ExibirOpcoesDoMenu()
     if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
     {
         Menu menuASerExibido = opcoes[opcaoEscolhidaNumerica];
-        menuASerExibido.Executar(artistasRegistrados);
+        menuASerExibido.Executar(artistaORMEntity);
         if (opcaoEscolhidaNumerica > 0) ExibirOpcoesDoMenu();
     } 
     else

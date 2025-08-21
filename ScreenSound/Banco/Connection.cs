@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using ScreenSound.Modelos;
 using System;
 using System.Collections.Generic;
