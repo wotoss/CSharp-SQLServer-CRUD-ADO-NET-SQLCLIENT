@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Banco\ArtistaORMEntityFramework.cs" />
     <Compile Remove="Menus\MenuAvaliarAlbum.cs" />
   </ItemGroup>
 
