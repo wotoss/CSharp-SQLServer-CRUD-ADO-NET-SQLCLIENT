@@ -10,16 +10,24 @@ using System.Threading.Tasks;
 namespace ScreenSound.Banco
 {
     //veja que diferente do AdoNet neste caso vamos extender do DbContext
-    internal class ScreenSoundContext : DbContext 
+    public class ScreenSoundContext : DbContext 
     {
         //(localdb)\MSSQLLocalDB
-        private string connectionString = "Server=DESKTOP-7JU3SNC\\SQLSERVER2022;Database=ScreenSound;Trusted_Connection=True;TrustServerCertificate=True;";
+        private string connectionString = "Server=DESKTOP-7JU3SNC\\SQLSERVER2022;Database=ScreenSoundAnalisandoBd;Trusted_Connection=True;TrustServerCertificate=True;";
         //private string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=ScreenSound;Trusted_Connection=True;TrustServerCertificate=True;";
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    //lembrando que string de conexão(connectionString) pode ir no appsetings
+        //    optionsBuilder.UseSqlServer(connectionString);
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //lembrando que string de conexão(connectionString) pode ir no appsetings
-            optionsBuilder.UseSqlServer(connectionString);
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(connectionString);
+            }
         }
 
         //vamos criar o mapeamento da nossa (tabela Artistas) para a classe (conjunto)DbSet<Artista>
