@@ -23,7 +23,7 @@ namespace ScreenSound.Banco
         //vamos criar um campo context
         protected readonly ScreenSoundContext context;
 
-        protected DALgenerico(ScreenSoundContext context)
+        public DALgenerico(ScreenSoundContext context)
         {
             this.context = context;
         }
