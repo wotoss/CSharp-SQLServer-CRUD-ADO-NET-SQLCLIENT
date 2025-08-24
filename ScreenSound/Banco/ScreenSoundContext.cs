@@ -16,19 +16,14 @@ namespace ScreenSound.Banco
         private string connectionString = "Server=DESKTOP-7JU3SNC\\SQLSERVER2022;Database=ScreenSoundAnalisandoBd;Trusted_Connection=True;TrustServerCertificate=True;";
         //private string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=ScreenSound;Trusted_Connection=True;TrustServerCertificate=True;";
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    //lembrando que string de conexão(connectionString) pode ir no appsetings
-        //    optionsBuilder.UseSqlServer(connectionString);
-        //}
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(connectionString);
-            }
+            //lembrando que string de conexão(connectionString) pode ir no appsetings
+            optionsBuilder
+                .UseSqlServer(connectionString)
+                .UseLazyLoadingProxies();
         }
+
 
         //vamos criar o mapeamento da nossa (tabela Artistas) para a classe (conjunto)DbSet<Artista>
         //desta forma o ( ORM - Entity Framework ) consegue indentificar a nossa tabela

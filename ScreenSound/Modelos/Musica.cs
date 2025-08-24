@@ -10,6 +10,8 @@ public class Musica
     public string Nome { get; set; }
     public int Id { get; set; }
     public int? AnoLancamento { get; set; }
+    //adicionar o relacionamento
+    public virtual Artista? Artista { get; set; }
 
     public void ExibirFichaTecnica()
     {
